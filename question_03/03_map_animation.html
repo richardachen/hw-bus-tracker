@@ -33,6 +33,15 @@
  
 <script>
   // api token
+  mapboxgl.accessToken = "pk.eyJ1IjoicmFjaGVuIiwiYSI6ImNremYxZmpkMjJtNzAyb3BxdDVnZXl0MWkifQ.PwmasYVtQw0NgfbsPp9nLg";
+  
+  const d = new Date();
+  var nightorday = 'mapbox://styles/mapbox/streets-v11';
+
+  if(d.getHours() > 18 || d.getHours() < 6){
+    nightorday = 'mapbox://styles/mapbox/dark-v10';
+  }
+
 
   // map instance
   var map = new mapboxgl.Map({
@@ -45,7 +54,6 @@
   // map marker
   var marker = new mapboxgl.Marker()
       .setLngLat([-71.05235838277956, 42.32078707598665])
-      // .setLngLat([-71.092761, 42.357575])
       .addTo(map);
 
 // next: get live data or a diff route that you want to explore
