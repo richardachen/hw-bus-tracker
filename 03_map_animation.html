@@ -1,0 +1,103 @@
+<!-- -------------------------------- -->
+<!-- ------- Marker Animation ------- -->
+<!-- -------------------------------- -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Add a default marker</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css" rel="stylesheet" />
+<style>
+  body { margin: 0; padding: 0; }
+  #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+  .map-overlay {
+    position: absolute;
+    left: 0;
+    padding: 10px;
+  }
+ 
+</style>
+</head>
+<body>
+<div id="map"></div>
+
+<div class="map-overlay top">
+  <button style="font-size: 2em" onclick="move()">
+    Show Route of MBTA Route 41
+  </button>
+</div>
+ 
+<script>
+  // api token
+
+  // map instance
+  var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [-71.07335838277956, 42.32078707598665],
+      zoom: 13
+  });
+
+  // map marker
+  var marker = new mapboxgl.Marker()
+      .setLngLat([-71.05235838277956, 42.32078707598665])
+      // .setLngLat([-71.092761, 42.357575])
+      .addTo(map);
+
+// next: get live data or a diff route that you want to explore
+
+  const busStops = [
+      [-71.05626813267051, 42.32119397732133],
+      [-71.05980000198173, 42.32016690473523],
+      [-71.06364400198183, 42.31896290716394],
+      [-71.06506645965402, 42.31733904401941],
+      [-71.06600990012917, 42.317697575558434],
+      [-71.0692100866375, 42.31882897441133],
+      [-71.07114197279093, 42.32023397995643],
+      [-71.0720190887982, 42.32156177935246],
+      [-71.07386462896511, 42.32406315293292],
+      [-71.07478554430939, 42.325379945079796],
+      [-71.07541100198154, 42.326419484537304],
+      [-71.077547646162, 42.32792329784558],
+      [-71.07912700198149, 42.32864988762171],
+      [-71.08288690012887, 42.32882947785184],
+      [-71.08392461732588, 42.32990317487332],
+      [-71.08601198478446, 42.32979802202677],
+      [-71.0913751884897, 42.33029426854388],
+      [-71.0940882731454, 42.32950495421977],
+      [-71.09548581547324, 42.327889025396765],
+      [-71.09658990012888, 42.32626714542988],
+      [-71.09736735780106, 42.32512596250243],
+      [-71.09973518663728, 42.32328300369664],
+      [-71.10238229034258, 42.32307689886492],
+      [-71.10564090012912, 42.32287429193368],
+      [-71.10862881547345, 42.322590090508335],
+      [-71.11061910383441, 42.32125956612788],
+      [-71.11181945965401, 42.31947277797244],
+      [-71.11344927314576, 42.31707251181528],
+      [-71.11420291732641, 42.3133773824812],
+      [-71.11453218849029, 42.31159292202952],
+      [-71.11538791732642, 42.31003625452318]
+  ];
+
+  // animate marker
+  let counter = 0;
+  function move(){
+
+    setTimeout(() =>{
+      if (counter >= busStops.length) return;
+      marker.setLngLat(busStops[counter]);
+      counter++;
+      move();
+    }, 1000)
+    
+  }
+
+</script>
+ 
+</body>
+</html>
