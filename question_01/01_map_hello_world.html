@@ -22,13 +22,22 @@
 <script>
 
     // your token from https://account.mapbox.com
+    mapboxgl.accessToken = "pk.eyJ1IjoicmFjaGVuIiwiYSI6ImNremYxZmpkMjJtNzAyb3BxdDVnZXl0MWkifQ.PwmasYVtQw0NgfbsPp9nLg";
+
+    const d = new Date();
+    var nightorday = 'mapbox://styles/mapbox/streets-v11';
+
+    if(d.getHours() > 18 || d.getHours() < 6){
+    nightorday = 'mapbox://styles/mapbox/dark-v10';
+    }
+
 
     // add map to page
     var map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11',
+        style: nightorday,
         center: [-71.091542,42.358862],
-        zoom: 10
+        zoom: 13
     });
 
 </script>
